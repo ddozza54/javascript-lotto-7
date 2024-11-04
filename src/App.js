@@ -15,7 +15,23 @@ class App {
       if (purchaseAmount % 1000 !== 0) {
         throw new Error('1,000원 단위로 입력해주세요');
       }
-      Console.print(purchaseAmount);
+
+      const numberOfLottoTickets = purchaseAmount / 1000;
+      Console.print(
+        `${numberOfLottoTickets}개를 구매했습니다.`
+      );
+
+      const generatingRandomNumbers = (count) => {
+        const randomLottos = [];
+        for (let i = 0; i < count; i++) {
+          randomLottos.push(
+            Random.pickUniqueNumbersInRange(1, 45, 6).sort(
+              (num1, num2) => num1 - num2
+            )
+          );
+        }
+        return randomLottos;
+      };
 
       const winningNumbersInput =
         await Console.readLineAsync(
