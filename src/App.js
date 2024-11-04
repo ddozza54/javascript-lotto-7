@@ -166,7 +166,12 @@ class App {
         });
         return ((profit / purchaseAmount) * 100).toFixed(1);
       };
-    
+      Console.print(
+        `총 수익률은 ${CalculateROI(
+          countOfMatches,
+          prizeMenu
+        )}% 입니다.`
+      );
     } catch (error) {
       throw Error(`[ERROR] ${error.message}`);
     }
