@@ -88,6 +88,32 @@ class App {
         );
       }
       Console.print(bonusNumber);
+
+      const countOfMatches = {
+        3: 0,
+        4: 0,
+        5: 0,
+        6: 0,
+      };
+      const countingMatchNumbers = (
+        lottos,
+        winningNumbers
+      ) => {
+        lottos.forEach((lotto) => {
+          const matchNumbers = lotto.filter((number) =>
+            winningNumbers.includes(number)
+          );
+
+          if (
+            Object.keys(countOfMatches).includes(
+              matchNumbers.length.toString()
+            )
+          ) {
+            countOfMatches[matchNumbers.length]++;
+          }
+        });
+      };
+      countingMatchNumbers(lottos, winningNumbers);
     } catch (error) {
       throw Error(`[ERROR] ${error.message}`);
     }
