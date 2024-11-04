@@ -158,6 +158,15 @@ class App {
 
       Console.print('당첨 통계\n---');
       printMatchCounting(countOfMatches, prizeMenu);
+
+      const CalculateROI = (countOfMatches, prizeMenu) => {
+        let profit = 0;
+        countOfMatches.forEach((value, key) => {
+          profit += value * prizeMenu[key];
+        });
+        return ((profit / purchaseAmount) * 100).toFixed(1);
+      };
+    
     } catch (error) {
       throw Error(`[ERROR] ${error.message}`);
     }
