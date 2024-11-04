@@ -33,6 +33,11 @@ class App {
         return randomLottos;
       };
 
+      const lottos = generatingRandomNumbers(
+        numberOfLottoTickets
+      );
+      lottos.forEach((lotto) => Console.print(lotto));
+
       const winningNumbersInput =
         await Console.readLineAsync(
           '당첨 번호를 입력해 주세요.'
