@@ -89,10 +89,19 @@ class App {
       }
       Console.print(bonusNumber);
 
+      const prizeMenu = {
+        3: 5000,
+        4: 50000,
+        5: 1500000,
+        '5bonus': 30000000,
+        6: 2000000000,
+      };
+
       const countOfMatches = {
         3: 0,
         4: 0,
         5: 0,
+        '5bonus': 0,
         6: 0,
       };
       const countingMatchNumbers = (
@@ -109,6 +118,13 @@ class App {
               matchNumbers.length.toString()
             )
           ) {
+            if (
+              matchNumbers.length === 5 &&
+              lotto.includes(bonusNumber)
+            ) {
+              console.log('5개 매치 + 보너스');
+              countOfMatches['5bonus']++;
+            }
             countOfMatches[matchNumbers.length]++;
           }
         });
