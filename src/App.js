@@ -97,35 +97,41 @@ class App {
         6: 2000000000,
       };
 
-      const countOfMatches = {
-        3: 0,
-        4: 0,
-        5: 0,
-        '5bonus': 0,
-        6: 0,
-      };
+      const countOfMatches = new Map();
+      countOfMatches
+        .set(3, 0)
+        .set(4, 0)
+        .set(5, 0)
+        .set('5bonus', 0)
+        .set(6, 0);
+
       const countingMatchNumbers = (
         lottos,
         winningNumbers
       ) => {
         lottos.forEach((lotto) => {
-          const matchNumbers = lotto.filter((number) =>
-            winningNumbers.includes(number)
+          const filteredMatchNumbers = lotto.filter(
+            (number) => winningNumbers.includes(number)
           );
-
           if (
-            Object.keys(countOfMatches).includes(
-              matchNumbers.length.toString()
-            )
+            countOfMatches.has(filteredMatchNumbers.length)
           ) {
             if (
-              matchNumbers.length === 5 &&
+              filteredMatchNumbers.length == 5 &&
               lotto.includes(bonusNumber)
             ) {
-              console.log('5개 매치 + 보너스');
-              countOfMatches['5bonus']++;
+              countOfMatches.set(
+                '5bonus',
+                countOfMatches.get('5bonus') + 1
+              );
+            } else {
+              countOfMatches.set(
+                filteredMatchNumbers.length,
+                countOfMatches.get(
+                  filteredMatchNumbers.length
+                ) + 1
+              );
             }
-            countOfMatches[matchNumbers.length]++;
           }
         });
       };
