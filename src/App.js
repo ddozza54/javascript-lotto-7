@@ -136,6 +136,28 @@ class App {
         });
       };
       countingMatchNumbers(lottos, winningNumbers);
+
+      const printMatchCounting = (
+        countOfMatches,
+        prizeMenu
+      ) => {
+        countOfMatches.forEach((value, key) => {
+          let printMessage = '';
+          if (key == '5bonus') {
+            printMessage = `5개 일치, 보너스 볼 일치 (${prizeMenu[
+              '5bonus'
+            ].toLocaleString('ko-KR')}원) - ${value}개`;
+          } else {
+            printMessage = `${key}개 일치 (${prizeMenu[
+              key
+            ].toLocaleString('ko-KR')}원) - ${value}개`;
+          }
+          Console.print(printMessage);
+        });
+      };
+
+      Console.print('당첨 통계\n---');
+      printMatchCounting(countOfMatches, prizeMenu);
     } catch (error) {
       throw Error(`[ERROR] ${error.message}`);
     }
