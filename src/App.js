@@ -68,7 +68,26 @@ class App {
           '중복되지 않는 숫자를 입력해주세요.'
         );
       }
-      Console.print(winningNumbers);
+
+      const bonusNumber = Number(
+        await Console.readLineAsync(
+          '보너스 번호를 입력해 주세요.'
+        )
+      );
+      if (!bonusNumber) {
+        throw new Error('올바른 숫자를 입력해주세요.');
+      }
+      if (winningNumbers.includes(bonusNumber)) {
+        throw new Error(
+          '기존 당첨 번호를 제외한 숫자를 입력해주세요.'
+        );
+      }
+      if (bonusNumber > 45 || bonusNumber < 1) {
+        throw new Error(
+          '로또 번호는 1부터 45 사이의 숫자여야 합니다.'
+        );
+      }
+      Console.print(bonusNumber);
     } catch (error) {
       throw Error(`[ERROR] ${error.message}`);
     }
