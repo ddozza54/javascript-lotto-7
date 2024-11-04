@@ -10,7 +10,7 @@ class App {
         )
       );
       if (!purchaseAmount) {
-        throw new Error('숫자로 입력해주세요');
+        throw new Error('하나의 숫자로 입력해주세요');
       }
       if (purchaseAmount % 1000 !== 0) {
         throw new Error('1,000원 단위로 입력해주세요');
